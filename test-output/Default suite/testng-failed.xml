@@ -3,13 +3,19 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCases.FundsPagesTest">
+      <class name="TestCases.LoginPageTest">
         <methods>
-          <include name="Tc_002_Fundspageclick"/>
-          <include name="close"/>
-          <include name="Setup"/>
+          <include name="Tc_004_UserText"/>
+          <include name="Tc_002_displaylogo1"/>
+          <include name="exit"/>
+          <include name="Tc_003_displaylogo2"/>
+          <include name="loadConfig"/>
+          <include name="afterSuite"/>
+          <include name="TC_001_loginTest"/>
+          <include name="Tc_006_TitleVerify"/>
+          <include name="setup"/>
         </methods>
-      </class> <!-- TestCases.FundsPagesTest -->
+      </class> <!-- TestCases.LoginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

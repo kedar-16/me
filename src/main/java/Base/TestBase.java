@@ -5,19 +5,30 @@ import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+
+import com.aventstack.extentreports.ExtentReports;
+
+import Utillity.ExtentReport;
 
 public class TestBase
 {
 	public static Properties pr;
 	public static WebDriver driver;
 	
-	public TestBase()
+	
+	@BeforeSuite(groups = {"sanity","regression"})
+	public void loadConfig()
 	{
+		ExtentReport.setExtent();
+		DOMConfigurator.configure("log4j.xml");
 		try 
 		{
 			pr=new Properties();
@@ -27,8 +38,9 @@ public class TestBase
 		catch(Exception e)
 		{
 			System.out.println("Exception is"+e);
-		}	
+		}
 	}
+
 	public void OpenBrowser()
 	{
 		 ChromeOptions chrome_Profile = new ChromeOptions();
@@ -43,5 +55,9 @@ public class TestBase
 	public void CloseBrowser()
 	{
 		driver.close();
+	}
+	@AfterSuite(groups ={"sanity","regression"})
+	public void afterSuite() {
+		ExtentReport.endReport();
 	}
 }
